@@ -3,7 +3,7 @@ const redis = require('redis');
 const redisClient = redis.createClient();
 
 
-// (async () => {
+(async () => {
     
     redisClient.on('error', (err) => {
         console.error('Redis error:', err);
@@ -19,9 +19,9 @@ const redisClient = redis.createClient();
         console.log('Redis client disconnected');
     });
 
-//     await redisClient.connect();
+    await redisClient.connect();
 
-//     await redisClient.ping();
-// })();
+    await redisClient.ping();
+})();
 
 module.exports = redisClient;
