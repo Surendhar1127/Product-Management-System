@@ -42,6 +42,20 @@ Running Tests:
 
 The file is called product.test.js. Run the tests with npm run test.
 
+Login API:
+
+1.Register a new credentials:
+
+Endpoint: http://localhost:8001/user/register
+
+2.Login :
+
+Endpoint: http://localhost:8001/user/login
+
+After logging in, a token will be generated, which needs to be included in all endpoints .
+For UPDATE, CREATE, and DELETE operations only ADMIN users have permission to perform these actions.
+
+
 Products API:
 
 1. Create a New Product
