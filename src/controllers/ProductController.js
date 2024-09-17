@@ -26,8 +26,15 @@ exports.handleProductCreation = (req, res) => {
 
 exports.handleProductList=async(req,res)=>{
     try {
-        console.log('get');
-        const product = await productService.getProduct();
+         console.log('get');
+        const parsedUrl = url.parse(req.url, true); 
+        
+        const { categoryId, availabilityStatus, sort, page = 1, limit = 10 } = parsedUrl.query;
+        
+        const filter = { categoryId: categoryId ? Number(categoryId) : undefined, availabilityStatus };
+        
+        const product = await productService.getProduct(filter, sort, Number(page), Number(limit));
+      
         res.writeHead(201, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(product));
       } catch (error) {
