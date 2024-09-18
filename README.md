@@ -31,13 +31,13 @@ npm start
 
 The application will start and be available at http://localhost:8001.
 
-Running with Docker:
+2.Running with Docker:
 
 docker pull surendhar001/product_management_nodeapp:latest
 
-Running Tests:
+3.Running Tests:
 
-The file is called product.test.js. Run the tests with npm run test.
+The file is called product.test.js and category.test.js. Run the tests with npm run test.
 
 Login API:
 
