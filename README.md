@@ -35,7 +35,7 @@ Running with Docker:
 
 1.Build the Docker image:
 
-docker build -t surendhar001/product_management_nodejs:latest .
+docker push surendhar001/product_management_node:latest
 
 
 Running Tests:
