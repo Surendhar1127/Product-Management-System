@@ -33,10 +33,7 @@ The application will start and be available at http://localhost:8001.
 
 Running with Docker:
 
-1.Build the Docker image:
-
-docker push surendhar001/product_management_node:latest
-
+docker pull surendhar001/product_management_nodeapp:latest
 
 Running Tests:
 
