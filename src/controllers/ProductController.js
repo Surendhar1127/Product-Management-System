@@ -33,7 +33,7 @@ exports.handleProductList=async(req,res)=>{
         
         const filter = { categoryId: categoryId ? Number(categoryId) : undefined, availabilityStatus };
         
-        const product = await productService.getProduct(filter, sort, Number(page), Number(limit));
+       const product = await productService.getProduct(filter, sort, Number(page), Number(limit),req.ip);
       
         res.writeHead(201, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(product));
