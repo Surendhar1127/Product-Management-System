@@ -2,7 +2,7 @@ const { client } = require('../config/DataBaseConfig');
 const redisClient = require('../cache/redis');
 
 
-const getProduct = async (filter = {}, sort = 'created_at', page = 1, limit = 10) => {
+const getProduct = async (filter = {}, sort, page = 1, limit = 10,ipAddress) => {
     console.log("getProduct:");
     const { categoryId, availabilityStatus } = filter;
 
@@ -10,7 +10,25 @@ const getProduct = async (filter = {}, sort = 'created_at', page = 1, limit = 10
 
     const cacheKey = `products:${JSON.stringify({ categoryId, availabilityStatus, sort, page, limit })}`;
 
+    const rateLimitKey=`rateLimitKey:${JSON.stringify({ipAddress})}`;
+    const rateLimitMaxRequests=2;
+    const rateWindowSecond=60;
+
+
     try {
+
+        const requestCount=await redisClient.get(rateLimitKey);
+
+if(requestCount && parseInt(requestCount)>=rateLimitMaxRequests){
+
+    throw new Error('To many requests,Please try after sometime');
+}
+else if(!requestCount){
+    await redisClient.setEx(rateLimitKey, rateWindowSecond, JSON.stringify(1));
+}else{
+    await redisClient.incr(rateLimitKey);
+}
+
        
         const cachedData = await redisClient.get(cacheKey);
         if (cachedData) {
