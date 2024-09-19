@@ -7,9 +7,9 @@ exports.createProduct=async (productData)=>{
 
 };
 
-exports.getProduct=async ()=>{
+exports.getProduct=async (filter, sort, page, limit,ipAddress)=>{
     console.log('service');
-    const product=productModel.getProduct();
+    const product=productModel.getProduct(filter, sort, page, limit,ipAddress);
     return product;
 
 };
